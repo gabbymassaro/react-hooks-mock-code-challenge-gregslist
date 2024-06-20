@@ -1,14 +1,6 @@
 import React, { useState } from "react"
 
-function ListingCard({
-  id,
-  description,
-  image,
-  location,
-  listings,
-  setListings,
-  onDeleteItem,
-}) {
+function ListingCard({ id, description, image, location, onDeleteItem }) {
   const [starState, setStarState] = useState(false)
 
   function handleStarClick() {

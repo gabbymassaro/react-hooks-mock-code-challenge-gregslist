@@ -4,6 +4,11 @@ import ListingsContainer from "./ListingsContainer"
 
 function App() {
   const [listings, setListings] = useState([])
+  const [searchValue, setSearchValue] = useState("")
+
+  const handleSearchValueChange = (newSearchValue) => {
+    setSearchValue(newSearchValue)
+  }
 
   function handleDeleteItem(id) {
     const updatedListings = listings.filter((listing) => listing.id !== id)
@@ -18,11 +23,12 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <Header onSearchValueChange={handleSearchValueChange} />
       <ListingsContainer
         onHandleDelete={handleDeleteItem}
         listings={listings}
         setListings={setListings}
+        searchValue={searchValue}
       />
     </div>
   )

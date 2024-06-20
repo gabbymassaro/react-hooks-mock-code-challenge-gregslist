@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react"
 
-function Search() {
+function Search({ passSearchToHeader }) {
+  const [searchInput, setSearchInput] = useState("")
+
+  function handleInput(e) {
+    setSearchInput(e.target.value)
+  }
+
   function handleSubmit(e) {
-    e.preventDefault();
-    console.log("submitted");
+    e.preventDefault()
+    passSearchToHeader(searchInput)
   }
 
   return (
@@ -12,12 +18,11 @@ function Search() {
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        onChange={handleInput}
       />
       <button type="submit">🔍</button>
     </form>
-  );
+  )
 }
 
-export default Search;
+export default Search

@@ -1,11 +1,22 @@
 import React from "react"
 import ListingCard from "./ListingCard"
 
-function ListingsContainer({ listings, setListings, onHandleDelete }) {
+function ListingsContainer({
+  listings,
+  setListings,
+  onHandleDelete,
+  searchValue,
+}) {
+  const searchToDisplay = listings.filter((item) => {
+    if (searchValue === "") return true
+
+    return item.description.toLowerCase().includes(searchValue.toLowerCase())
+  })
+
   return (
     <main>
       <ul className="cards">
-        {listings.map((item) => (
+        {searchToDisplay.map((item) => (
           <ListingCard
             key={item.id}
             id={item.id}
