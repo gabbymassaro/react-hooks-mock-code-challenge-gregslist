@@ -1,9 +1,9 @@
 import React from "react"
 import Search from "./Search"
 
-function Header({ onSearchValueChange }) {
+function Header({ onSearchValueChange, sortByLocation }) {
   return (
-    <header>
+    <header className="header-container">
       <h1>
         <span className="logo" role="img">
           ☮
@@ -11,6 +11,7 @@ function Header({ onSearchValueChange }) {
         gregslist
       </h1>
       <Search passSearchToHeader={onSearchValueChange} />
+      <button onClick={sortByLocation}>Sort By Location</button>
     </header>
   )
 }
