@@ -5,6 +5,11 @@ import ListingsContainer from "./ListingsContainer"
 function App() {
   const [listings, setListings] = useState([])
 
+  function handleDeleteItem(id) {
+    const updatedListings = listings.filter((listing) => listing.id !== id)
+    setListings(updatedListings)
+  }
+
   useEffect(() => {
     fetch("http://localhost:6001/listings")
       .then((response) => response.json())
@@ -14,7 +19,11 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <ListingsContainer listings={listings} />
+      <ListingsContainer
+        onHandleDelete={handleDeleteItem}
+        listings={listings}
+        setListings={setListings}
+      />
     </div>
   )
 }

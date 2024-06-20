@@ -1,10 +1,26 @@
 import React, { useState } from "react"
 
-function ListingCard({ description, image, location }) {
+function ListingCard({
+  id,
+  description,
+  image,
+  location,
+  listings,
+  setListings,
+  onDeleteItem,
+}) {
   const [starState, setStarState] = useState(false)
 
   function handleStarClick() {
     setStarState((starState) => !starState)
+  }
+
+  function handleDelete() {
+    fetch(`http://localhost:6001/listings/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then(() => onDeleteItem(id))
   }
 
   return (
@@ -28,7 +44,9 @@ function ListingCard({ description, image, location }) {
         )}
         <strong>{description}</strong>
         <span> · {location}</span>
-        <button className="emoji-button delete">🗑</button>
+        <button className="emoji-button delete" onClick={handleDelete}>
+          🗑
+        </button>
       </div>
     </li>
   )
