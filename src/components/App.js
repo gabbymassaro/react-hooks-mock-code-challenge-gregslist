@@ -39,11 +39,29 @@ function App() {
       })
   }, [])
 
+  function onItemFormSubmit(listing) {
+    fetch("http://localhost:6001/listings", {
+      method: "POST",
+      body: JSON.stringify(listing),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json()
+      })
+      .then((data) => {
+        setListings([data, ...listings])
+      })
+  }
+
   return (
     <div className="app">
       <Header
         onSearchValueChange={handleSearchValueChange}
         sortByLocation={handleSortByLocation}
+        onItemFormSubmit={onItemFormSubmit}
       />
       <ListingsContainer
         onHandleDelete={handleDeleteItem}
