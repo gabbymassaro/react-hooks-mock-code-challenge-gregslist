@@ -1,4 +1,5 @@
 import React from "react"
+import Favorite from "./Favorite"
 
 function ListingCard({ listing: { image, description, location } }) {
   return (
@@ -8,11 +9,7 @@ function ListingCard({ listing: { image, description, location } }) {
         <img src={image} alt={description} />
       </div>
       <div className="details">
-        {true ? (
-          <button className="emoji-button favorite active">★</button>
-        ) : (
-          <button className="emoji-button favorite">☆</button>
-        )}
+        <Favorite />
         <strong>{description}</strong>
         <span> · {location}</span>
         <button className="emoji-button delete">🗑</button>
