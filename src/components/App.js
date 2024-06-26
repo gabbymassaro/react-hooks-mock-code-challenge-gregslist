@@ -5,6 +5,7 @@ import ListingsContainer from "./ListingsContainer"
 function App() {
   const [listings, setListings] = useState([])
   const [search, setSearch] = useState("")
+  const [sort, setSort] = useState("")
 
   useEffect(() => {
     fetch("http://localhost:6001/listings")
@@ -23,11 +24,22 @@ function App() {
     return listingDescription.startsWith(search.toLowerCase())
   })
 
+  const sortedAndFilteredListings = sort
+    ? filterListings.sort((a, b) => {
+        return a[sort].localeCompare(b[sort])
+      })
+    : filterListings
+
   return (
     <div className="app">
-      <Header search={search} setSearch={setSearch} />
+      <Header
+        search={search}
+        setSearch={setSearch}
+        sort={sort}
+        setSort={setSort}
+      />
       <ListingsContainer
-        listings={filterListings}
+        listings={sortedAndFilteredListings}
         onHandleDelete={handleDelete}
       />
     </div>
