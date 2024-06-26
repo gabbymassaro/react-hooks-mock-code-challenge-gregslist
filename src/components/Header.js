@@ -3,7 +3,7 @@ import Search from "./Search"
 import Sort from "./Sort"
 import NewListing from "./NewListing"
 
-function Header({ setSearch, setSort }) {
+function Header({ setSearch, setSort, onAddListing, onItemFormSubmit }) {
   const [showForm, setShowForm] = useState(false)
 
   const handleShowForm = () => {
@@ -22,7 +22,12 @@ function Header({ setSearch, setSort }) {
         <Sort setSort={setSort} />
         <button onClick={handleShowForm}>Add New Listing</button>
       </header>
-      <NewListing showForm={showForm} setShowForm={setShowForm} />
+      <NewListing
+        showForm={showForm}
+        setShowForm={setShowForm}
+        onAddListing={onAddListing}
+        onItemFormSubmit={onItemFormSubmit}
+      />
     </>
   )
 }

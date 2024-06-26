@@ -30,6 +30,27 @@ function App() {
       })
     : filterListings
 
+  const handleAddListing = (newListing) => {
+    setListings([...listings, newListing])
+  }
+
+  function onItemFormSubmit(listing) {
+    fetch("http://localhost:6001/listings", {
+      method: "POST",
+      body: JSON.stringify(listing),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json()
+      })
+      .then((data) => {
+        setListings([data, ...listings])
+      })
+  }
+
   return (
     <div className="app">
       <Header
@@ -37,6 +58,8 @@ function App() {
         setSearch={setSearch}
         sort={sort}
         setSort={setSort}
+        onAddListing={handleAddListing}
+        onItemFormSubmit={onItemFormSubmit}
       />
       <ListingsContainer
         listings={sortedAndFilteredListings}
