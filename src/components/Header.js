@@ -1,18 +1,35 @@
-import React from "react";
-import Search from "./Search";
+import React, { useState } from "react"
+import Search from "./Search"
+import Sort from "./Sort"
+import NewListing from "./NewListing"
 
-function Header() {
+function Header({ setSearch, setSort, onAddListing, onItemFormSubmit }) {
+  const [showForm, setShowForm] = useState(false)
+
+  const handleShowForm = () => {
+    setShowForm(!showForm)
+  }
   return (
-    <header>
-      <h1>
-        <span className="logo" role="img">
-          ☮
-        </span>
-        gregslist
-      </h1>
-      <Search />
-    </header>
-  );
+    <>
+      <header>
+        <h1>
+          <span className="logo" role="img">
+            ☮
+          </span>
+          gregslist
+        </h1>
+        <Search setSearch={setSearch} />
+        <Sort setSort={setSort} />
+        <button onClick={handleShowForm}>Add New Listing</button>
+      </header>
+      <NewListing
+        showForm={showForm}
+        setShowForm={setShowForm}
+        onAddListing={onAddListing}
+        onItemFormSubmit={onItemFormSubmit}
+      />
+    </>
+  )
 }
 
-export default Header;
+export default Header

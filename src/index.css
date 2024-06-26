@@ -130,3 +130,8 @@ main {
   font-family: serif;
   font-size: 1rem;
 }
+
+
+.new-listing-form {
+  background-color: pink;
+}
