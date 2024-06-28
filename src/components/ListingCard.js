@@ -1,7 +1,11 @@
 import React from "react"
 import Favorite from "./Favorite"
+import Delete from "./Delete"
 
-function ListingCard({ listing: { description, image, location } }) {
+function ListingCard({
+  listing: { id, description, image, location },
+  onDelete,
+}) {
   return (
     <li className="card">
       <div className="image">
@@ -12,7 +16,7 @@ function ListingCard({ listing: { description, image, location } }) {
         <Favorite />
         <strong>{description}</strong>
         <span> · {location}</span>
-        <button className="emoji-button delete">🗑</button>
+        <Delete id={id} onDelete={onDelete} />
       </div>
     </li>
   )

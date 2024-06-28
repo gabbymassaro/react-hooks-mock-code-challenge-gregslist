@@ -12,11 +12,11 @@ function App() {
     fetch("http://localhost:6001/listings")
       .then((response) => response.json())
       .then((data) => setListings(data))
-  }, [])
+  }, [fetchTrigger])
   return (
     <div className="app">
       <Header />
-      <ListingsContainer listings={listings} />
+      <ListingsContainer listings={listings} onDelete={toggleFetchTrigger} />
     </div>
   )
 }
