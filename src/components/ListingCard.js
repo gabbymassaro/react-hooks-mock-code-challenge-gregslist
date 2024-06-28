@@ -1,24 +1,25 @@
-import React from "react";
+import React from "react"
+import Favorite from "./Favorite"
+import Delete from "./Delete"
 
-function ListingCard() {
+function ListingCard({
+  listing: { id, description, image, location },
+  onDelete,
+}) {
   return (
     <li className="card">
       <div className="image">
         <span className="price">$0</span>
-        <img src={"https://via.placeholder.com/300x300"} alt={"description"} />
+        <img src={image} alt={description} />
       </div>
       <div className="details">
-        {true ? (
-          <button className="emoji-button favorite active">★</button>
-        ) : (
-          <button className="emoji-button favorite">☆</button>
-        )}
-        <strong>{"description"}</strong>
-        <span> · {"location"}</span>
-        <button className="emoji-button delete">🗑</button>
+        <Favorite />
+        <strong>{description}</strong>
+        <span> · {location}</span>
+        <Delete id={id} onDelete={onDelete} />
       </div>
     </li>
-  );
+  )
 }
 
-export default ListingCard;
+export default ListingCard
